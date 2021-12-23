@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/salvo.css" />
+    <link rel="stylesheet" href="dist/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/cargarndo.css" />
+
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>Salvo Player!</title>
+  </head>
+  <body>
+    <div class="">
+      <div class="loader_bg">
+          <div class="row flex-column align-items-center justify-content-center">
+              <div class="loader"></div>
+              <p class="texto-loading texto-animado">Cargando datos del jugador</p>
+          </div>
+      </div>
+  </div>
+    <div id="app" class="app">
+      <!-- NAVBAR -->
+
+      <nav class="navbar navbar-dark navbar-expand-lg nav-dark2">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img
+              src="img/BATTLESHIP.png"
+              width="250"
+              class="d-inline-block align-top"
+              alt=""
+            />
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-nav ml-auto">
+              <button
+                v-on:click="volver"
+                v-if="player != 'Guest'"
+                id="logout-btn"
+                class="btn btn-secondary ml-1 my-2 my-sm-0"
+                type="button"
+              >
+                Volver
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- CONTENT MAIN -->
+
+      <!-- AVATAR + CAMBIAR FOTO -->
+
+      <div class="container bag-container my-3 px-3 pt-3 pb-5 borde-redondo">
+        <div class="row justify-content-around">
+          <div class="col-7 col-lg-4">
+            <img
+              class="borde-redondo m-4"
+              :src="avatar"
+              width="300px"
+              alt="user avatar"
+            />
+           
+
+            <div class="row my-3 nav-dark2 borde-redondo p-0" id="form-avatar">
+              <form
+                class="form-group m-3"
+                id="uploadForm"
+                enctype="multipart/form-data"
+                v-on:change="uploadFile"
+              >
+                <div v-if="!image">
+                  <h2>Subir imagen de perfil</h2>
+                  <input
+                    class="form-control-file"
+                    type="file"
+                    id="file"
+                    name="file"
+                    @change="onFileChange"
+                  />
+                </div>
+                <div v-else>
+                  <img class="img-upload borde-redondo" :src="image" />
+                  <button class="btn btn-danger" @click="removeImage">
+                    Eliminar imagen
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- AVATARES SELECCIONABLES -->
+
+          <div class="col-7 col-lg-3 mt-5">
+            <div id="avatares" class="row">
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar2"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar2.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar3"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar3.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar4"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar4.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar5"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar5.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar6"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar6.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar7"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar7.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar8"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar8.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar9"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar9.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              <button
+                class="btn-outline-dark borde-redondo"
+                id="avatar10"
+                onclick="app.selectavatar(this.id)"
+              >
+                <img
+                  class="img-fluid img-thumbnail borde-redondo"
+                  src="img/avatar10.png"
+                  width="75px"
+                  alt=""
+                />
+              </button>
+              
+            </div>
+          </div>
+
+          <!-- DATOS DEL JUGADOR -->
+
+          <div class="col-8 col-lg-6 ml-5">
+            <h1 class="trazo-blanco ml-3 h1 text-bold">Datos del jugador</h1>
+              <div class="trazo-blanco ml-3 h3 text-bold">
+                Email: {{ player.email }}
+              </div>
+              <div class="trazo-blanco ml-3 h3 text-bold">
+                Nombre: {{ player.name }}
+              </div>
+              <div class="trazo-blanco ml-3 h3 text-bold">
+                Porcentaje de victorias: {{ winrate}} %
+              </div>
+              <div class="trazo-blanco ml-3 h3 text-bold">
+                Victorias: {{ player.ganadas }}
+              </div>
+              <div class="trazo-blanco ml-3 h3 text-bold">
+                Empates: {{ player.empatadas }}
+              </div>
+              <div class="trazo-blanco ml-3 h3 text-bold">
+                Derrotas: {{ player.jugadas - player.ganadas }}
+              </div>
+              <div class="trazo-blanco ml-3 h3 text-bold">
+                Jugadas: {{ player.jugadas }}
+              </div>
+              
+          </div>
+
+          <!-- FORMULARIO DE NUEVOS DATOS -->
+
+          <div class="col-lg-4 mr-5">
+            <label
+              for="user"
+              class="form-label text-light text-bold trazo-negro h3"
+              >Cambiar nombre de usuario</label
+            >
+            <input type="text" class="form-control" id="user" placeholder="" />
+            <label
+              for="oldpassword"
+              class="form-label text-light text-bold trazo-negro h3"
+              >Contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="oldpassword"
+              placeholder="ingrese su contraseña actual"
+            />
+            <label
+              for="newpassword"
+              class="form-label text-light text-bold trazo-negro h3"
+              >Nueva contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="newpassword1"
+              placeholder="Ingrese su nueva contraseña"
+            />
+            <label
+              for="newpassword2"
+              class="form-label text-light text-bold trazo-negro h3"
+              >Repita su contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="newpassword2"
+              placeholder="Ingrese nuevamente su nueva contraseña"
+            />
+            <div class="row justify-content-end mx-1 my-3">
+              
+              <button class="btn btn-success w-100" v-on:click="updatePlayer">
+                Actualizar datos
+              </button>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+
+      <div class="container bag-container mb-5 borde-redondo">
+        <footer>
+          <div
+            class="
+              row
+              d-flex
+              align-items-center
+              justify-content-between
+              py-4
+              mt-4
+            "
+          >
+            <div
+              class="
+                col-md-12 col-lg
+                my-3
+                mx-auto
+                d-flex
+                justify-content-center
+              "
+            >
+              <a href="https://compragamer.com/" target="_blank">
+                <img src="img/compragamer_logo.png" width="400" alt="" />
+              </a>
+            </div>
+            <div
+              class="
+                col-md-12 col-lg
+                my-3
+                mx-auto
+                d-flex
+                justify-content-center
+              "
+            >
+              <a href="https://mindhubweb.com/" target="_blank">
+                <img src="img/minhub_logo.png" width="200" alt="" />
+              </a>
+            </div>
+            <div
+              class="
+                col-md-12 col-lg
+                my-3
+                mx-auto
+                d-flex
+                justify-content-center
+              "
+            >
+              <a href="https://www.g2csolutions.tech/" target="_blank">
+                <img src="img/G2C.png" width="250" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <h2 class="text-trans sombra-negra">
+                Campano | Carrero | Lopez | Mendoza | Peruchena | Rocha | Simone
+              </h2>
+              <h2 class="text-trans sombra-negra">© 2021 | Grupo 2</h2>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/playerView.js"></script>
+
+    
+        <script>
+        setTimeout(function(){
+            $('.loader_bg').fadeToggle();
+        }, 1500);
+        </script>
+  </body>
+</html>

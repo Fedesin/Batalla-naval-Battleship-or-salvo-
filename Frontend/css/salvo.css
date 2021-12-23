@@ -1,0 +1,130 @@
+﻿body{
+    background-image:url(../img/battleship3.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center center
+}
+
+.app{
+    min-width: 400px;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, .5);
+}
+
+.center{
+    margin: auto;
+}
+
+.imagen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#user-name{
+    color: red;
+    vertical-align: middle;
+}
+
+#games-list{
+    display: inline-block;
+}
+
+#game-state {
+    margin: 10px 10px 10px 0px;
+    border: dashed white 1px;
+    display: inline-block;
+    min-width: 350px;
+    padding: 5px;
+    background-color: #141414;
+    font-family: 'Oswald', sans-serif;
+    color: #fcfcfc;
+    text-align: center;
+}
+
+#game-state span{
+    display: block;
+}
+
+
+
+.fondo-color1 {
+    background-color: #1c1c1c;
+}
+
+.cabecera {
+    min-height: 150px;
+    background-image: url(../img/bienvenidos.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+}
+
+.versus {
+    background-color: #292929;
+    min-height: 100px;
+    
+    background-position: 50% 20%;
+    background-size: 10%;
+    background-repeat: no-repeat;
+}
+
+.container{
+    background-color: rgba(255,255,255,0.2);
+}
+
+.text-trans{
+    color: rgba(255,255,255,0.7);
+}
+.borde-redondo{
+    border-radius: 1.25rem;
+}
+.trazo-negro{
+    color: white;
+    text-shadow: -2px 2px 0 #000, 2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000;
+}
+.trazo-blanco {
+    color: black;
+    text-shadow: -2px 2px 0 #fff, 2px 2px 0 #fff, 2px -2px 0 #fff, -2px -2px 0 #fff;
+}
+.sombra-negra {
+    text-shadow: 0px 5px 5px #000, 0px 5px 5px #000, 0px 5px 5px #000, 0px 5px 5px #000;
+}
+.estilo1{
+    color:azure; 
+    background: rgb(41, 41, 41);
+}
+.fondo-color2{
+    background: rgb(28, 28, 28);
+}
+.fondo-color3{
+    background: rgb(41, 41, 41);
+}
+.fondo-color4{
+    background: rgb(50, 50, 50);
+}
+
+html{
+    scroll-behavior: smooth;
+}
+.nav-dark2{
+    background:#161616;
+}
+.bag-container
+{
+    background-color:#16161680;
+}
+.bag-container2
+{
+    background-color:#6d6d6d80;
+}
+.marco-imagen{
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+}

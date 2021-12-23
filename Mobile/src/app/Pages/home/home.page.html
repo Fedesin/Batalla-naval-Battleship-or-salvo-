@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Inicio </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="creategame()" >
+        <ion-icon slot="end" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="updateData($event)">
+    <ion-refresher-content
+      pulling-icon="refresh-circle-outline"
+      refreshing-spinner="crescent"
+      refreshing-text="">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="data" lines="inset">
+    <div *ngFor="let g of data.games">
+      <ion-item (click)="joinGame(g.id)">
+        <div class="full ion-margin-vertical">
+          <ion-avatar slot="end" class="ion-float-right ion-margin-vertical">
+            <img src="{{g.gamePlayers[0].player.avatar}}" />
+          </ion-avatar>
+          <ion-label class="ion-margin-vertical">
+            <h3>Nombre del rival: {{g.gamePlayers[0].player.name}}</h3>
+            <p>Fecha de creacion: {{g.creationDate | date :'short'}}</p>
+            <p>Estado: {{ getState(g.state) }}</p>
+          </ion-label>
+          <ion-progress-bar type="indeterminate"></ion-progress-bar>
+        </div>
+      </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-infinite-scroll threshold="40%" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Cargando mas juegos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

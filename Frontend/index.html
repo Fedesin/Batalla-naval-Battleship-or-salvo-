@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/salvo.css" />
+    <link rel="stylesheet" href="css/cargarndo.css" />
+    <!-- Sweet Alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>BattleShip G2</title>
+</head>
+<body>
+    
+
+
+    <div class="">
+        <div class="loader_bg">
+            <div class="row flex-column align-items-center justify-content-center">
+                <div class="loader"></div>
+                <p class="texto-loading texto-animado">Cargando pantalla de inicio</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="app" class="app">
+        
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-dark navbar-expand-xl nav-dark2">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/BATTLESHIP.png" width="250" class="d-inline-block align-top" alt="">
+                    
+
+                </a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="navbar-nav ml-auto row justify-content-center">
+
+                        <!-- FORM -->
+                        <!--<div class="text-center text-light mr-3 mx-auto my-auto" id="user-name" v-if="player != 'Guest'">{{ name }} </div>-->
+                        <a class="nav-link mr-2 text-light my-2" href="#GAMES">Juegos</a>
+                        <a class="nav-link mr-2 text-light my-2" href="#MYGAMES">Mis Juegos</a>
+                        <a class="nav-link mr-2 text-light my-2" href="#acercade">Acerca de...</a>
+
+                        <form id="login-form" class="form-inline my-lg-0 my-3">
+                            <input v-model:value="email" class="form-control mr-sm-2 my-2" type="email" placeholder="Correo Electrónico" aria-label="Email">
+                            <input v-model:value="password" class="form-control mr-sm-2 my-2" type="password" placeholder="Contrase&ntilde;a" aria-label="Contraseña">
+                            <a class="flex--item s-link fs-caption btn btn-danger mx-1" href="#" data-toggle="modal" data-target="#forgetpassword">Olvidaste tu contraseña?</a>
+                            <button v-on:click="login" data-toggle="tooltip" title="Iniciar sesión" id="login-btn" class="btn btn-success my-2 my-sm-0" type="button">Iniciar Sesión</button>
+                            <button v-on:click="showModal2" data-toggle="tooltip" title="Registrarse" id="signin-btn" class="btn btn-primary ml-1 mr-1 my-2 my-sm-0" type="button">Registrarse</button></form>
+                        <button v-on:click="logout" v-if="player != 'Guest'" id="logout-btn" class="btn btn-danger ml-1 my-2 px-5" type="button">Cerrar Sesión</button>
+                        <button v-on:click="playerInfo" v-if="player != 'Guest'" id="logout-btn" class="btn btn-info ml-1 my-2 px-5" type="button">Perfil | {{ name }}</button>
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTAINER -->
+
+
+
+        <div class="container bag-container mt-4 mt-lg-5 borde-redondo pb-3">
+            <div class="row justify-content-center">
+                <div class="col text-center mt-3 cabecera">
+
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <h2 class="text-center text-light trazo-negro" v-if="player == 'Guest'">Registrate o inicia sesión para comenzar la diversión!</h2>
+            </div>
+            <div class="row mt-lg-5">
+
+                <!-- LEADER TABLE -->
+
+                <div v-if="scores.length != 0" class="col text-center text-light">
+                    <h2 class="trazo-negro">L&iacute;deres</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped estilo1">
+                            <thead class="fondo-color2">
+                                <tr>
+                                    <th>Puesto</th>
+                                    <th>Jugador</th>
+                                    <th>Avatar</th>
+                                    <th>Puntos</th>
+                                    <th>Ganados</th>
+                                    <th>Empatados</th>
+                                    <th>Perdidos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(score, index) in scores">
+                                    <td v-if="index == 0"><img src="img/primero.png" width="60" alt=""></td>
+                                    <td v-if="index == 1"><img src="img/segundo.png" width="50" alt=""></td>
+                                    <td v-if="index == 2"><img src="img/tercero.png" width="40" alt=""></td>
+                                    <td v-else-if="index >2"></td>
+                                    <td class="text-center">{{ score.name }}</td>
+                                    <td><img class="marco-imagen borde-redondo" :src="score.avatar" width="60" alt="user avatar" /></td>
+                                    <td>{{ score.points }}</td>
+                                    <td>{{ score.ganadas }}</td>
+                                    <td>{{ score.empatadas }}</td>
+                                    <td>{{ (score.jugadas - score.empatadas - score.ganadas) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <button v-if="player != 'Guest'" v-on:click="createGame()" id="create-btn" class="btn btn-success btn-sm ml-1 my-2 my-sm-0 w-100" type="button">Crear Partida!</button>
+                </div>
+
+                <div id="GAMES" class="row w-100">
+
+                    <!-- GAME LIST -->
+
+                    <div v-if="games.length != 0" class="col-12 col-lg-6">
+                        <div class="row d-flex flex-column mx-auto">
+                            <h2 id="games-list" class="text-center trazo-negro">Juegos en espera</h2>
+                        </div>
+
+                        <!-- PAGINACION -->
+
+                        <nav v-if="totalPages > 1" aria-label="Page navigation example">
+                            <ul class="pagination my-3 mx-auto row justify-content-center">
+                                <li v-if="page > 1" class="page-item"><button class="btn btn-secondary mx-2" v-on:click="getGamesPage(page-1)">Anteriores 10 juegos</button></li>
+                                <li v-if="page < totalPages && totalPages > 1" class="page-item"><button class="btn btn-info mx-2" v-on:click="getGamesPage(page+1)">Siguientes 10 juegos</button></li>
+                            </ul>
+                        </nav>
+
+
+
+                        <div v-for="game in games">
+
+                            <!-- GAME -->
+
+                            <div class="card my-3">
+                                <div class="card-header text-center text-light fondo-color1">
+                                    Inicio el {{game.creationDate | dateFormat}}
+                                </div>
+                                <div class="card-body versus ">
+                                    <div class="d-flex justify-content-around align-items-center mx-auto">
+                                        <img class="marco-imagen borde-redondo" :src="game.gamePlayers[0].player.avatar" width="60" alt="user avatar" />
+                                        <div class="trazo-negro h1">
+                                            {{game.gamePlayers[0].player.name}}
+                                        </div>
+
+                                        <img class="mx-3" v-if="game.gamePlayers[1] != undefined" src="img/vs.png" width="75px"></img>
+
+                                        <div v-if="game.gamePlayers[1] != undefined" class="trazo-negro h1">
+                                            {{game.gamePlayers[1].player.name}}
+                                        </div>
+                                        <img class="marco-imagen borde-redondo" v-if="game.gamePlayers[1] != undefined" :src="game.gamePlayers[1].player.avatar" width="60" alt="user avatar" />
+
+                                    </div>
+
+
+                                    <div class="col d-flex flex-column mx-auto mt-2" v-for="gamePlayer in game.gamePlayers">
+
+                                        <button v-if="gamePlayer.player.email == player" class="btn btn-primary btn-sm" v-on:click="returnGame(gamePlayer.id)">Continuar juego</button>
+                                        <button v-else-if="player != 'Guest' && gamePlayer.player.email != player && game.gamePlayers.length < 2" class="btn btn-success btn-sm" v-on:click="joinGame(game.id)">Unirse a la partida</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- MY GAME LIST -->
+
+                    <div id="MYGAMES" v-if="player != 'Guest'" class="col-12 col-lg-6">
+                        <div class="row d-flex flex-column mx-auto">
+
+                            <h2 v-if="mygames.length != 0" id="games-list" class="text-center trazo-negro">Mis juegos</h2>
+                        </div>
+
+
+                        <!-- PAGINACION -->
+
+                        <nav v-if="totalPagesm > 1" aria-label="Page navigation example">
+                            <ul class="pagination my-3 mx-auto row justify-content-center w-100">
+                                <li v-if="pagem > 1" class="page-item"><button class="btn btn-secondary mx-2" v-on:click="getMyGames(pagem-1)">Anteriores 10 juegos</button></li>
+                                <li v-if="pagem < totalPagesm && totalPagesm > 1" class="page-item"><button class="btn btn-info mx-2" v-on:click="getMyGames(pagem+1)">Siguientes 10 juegos</button></li>
+                            </ul>
+                        </nav>
+
+
+
+                        <div v-if="mygames.length != 0" v-for="game in mygames">
+
+                            <!-- GAME -->
+
+                            <div class="card my-3">
+                                <div class="card-header text-center text-light fondo-color1">
+                                    Inicio el {{game.creationDate | dateFormat}}
+                                    <span v-if="game.gamePlayers[0].state == 3">- {{game.gamePlayers[0].player.name}} Gano </span>
+                                    <span v-else-if="game.gamePlayers[0].state == 4">- {{game.gamePlayers[0].player.name}} Perdio </span>
+                                    <span v-else-if="game.gamePlayers[0].state == 5">-  Empataron </span>
+                                    <span v-else-if="game.gamePlayers[0].state < 3 || game.gamePlayers[0].state > 5">- Jugando </span>
+                               
+
+                                </div>
+                                <div class="card-body versus ">
+                                    <div class="d-flex justify-content-around align-items-center mx-auto">
+                                        <img class="marco-imagen borde-redondo" :src="game.gamePlayers[0].player.avatar" width="60" alt="user avatar" />
+                                        <div class="trazo-negro h1">
+                                            {{game.gamePlayers[0].player.name}}
+                                        </div>
+
+                                        <img class="mx-3 borde-redondo" v-if="game.gamePlayers[1] != undefined" src="img/vs.png" width="75px"></img>
+
+                                        <div v-if="game.gamePlayers[1] != undefined" class="trazo-negro h1">
+                                            {{game.gamePlayers[1].player.name}}
+                                        </div>
+                                        <img class="marco-imagen borde-redondo" v-if="game.gamePlayers[1] != undefined" :src="game.gamePlayers[1].player.avatar" width="60" alt="user avatar" />
+                                    </div>
+
+
+                                    <div class="col d-flex flex-column mx-auto mt-2" v-for="gamePlayer in game.gamePlayers">
+
+                                        <button v-if="gamePlayer.player.email == player" class="btn btn-primary btn-sm" v-on:click="returnGame(gamePlayer.id)">Continuar juego</button>
+                                        <button v-else-if="player != 'Guest' && gamePlayer.player.email != player && game.gamePlayers.length < 2" class="btn btn-success btn-sm" v-on:click="joinGame(game.id)">Unirse a la partida</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+                
+
+                
+
+
+            </div>
+
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="infoModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content fondo-color3">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-light" id="infoModalCenterTitle">Rellene los campos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-light">Nombre de Usuario</label>
+                            <input v-model:value="name" type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label text-light">Correo Electrónico</label>
+                            <input v-model:value="emailr" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label text-light">Contraseña</label>
+                            <input v-model:value="passwordr" type="password" class="form-control" id="exampleInputPassword1">                          
+                        </div>
+                        <div class="row border-top py-3">
+                            <button type="button" class="btn btn-secondary col ml-3 mr-2" data-dismiss="modal">Cancelar</button>
+                            <button type="button" v-on:click="signin" class="btn btn-success col mr-3 mr-2">Registrarse</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forget Password Modal -->
+        <div class="modal fade" id="forgetpassword" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4> Recuperar contraseña </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Ingrese su dirección de email para enviarle las instrucciones a seguir</h6>
+                        <form role="form">
+                            <div class="form-group">
+                                <input v-model:value="emailForPass" class="form-control mr-sm-2" type="email" placeholder="Email" aria-label="emailForPass">
+                            </div>
+                            <button v-on:click="forgetPassword" type="button" class="btn btn-success btn-block"> Enviar </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reset Password Modal -->
+        <div class="modal fade" id="resetpassword" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Recuperar Contraseña</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <input id="token" type="hidden" name="Token" />
+                            <input id="email" type="hidden" name="Email" />
+                            <div class="form-group">
+                                <label for="newpassword"> Nueva Contraseña </label>
+                                <input v-model:value="newpassword" class="form-control mr-sm-2" type="password" placeholder="Ingrese una nueva contraseña" aria-label="newpassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmpassword"> Confirmar Contraseña </label>
+                                <input v-model:value="confirmpassword" class="form-control mr-sm-2" type="password" placeholder="confirme la contraseña" aria-label="confirmpassword">
+                            </div>
+                            <button v-on:click="resetPassword" type="button" class="btn btn-success btn-block"> Enviar </button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                <div class="modal-content fondo-color4">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-light" id="infoModalCenterTitle">{{ modal.tittle }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body text-light">
+                        <p>{{ modal.message }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div id="acercade" class="container bag-container2 mb-5 borde-redondo">
+        <footer>
+
+            <div class="row d-flex align-items-center justify-content-between py-4 mt-4">
+                <div class="col-md-12 col-lg my-3 mx-auto d-flex justify-content-center">
+                    <a href="https://compragamer.com/" target="_blank">
+                        <img src="img/compragamer_logo.png" width="400" alt="">
+                    </a>
+                </div>
+                <div class="col-md-12 col-lg my-3 mx-auto d-flex justify-content-center">
+                    <a href="https://mindhubweb.com/" target="_blank">
+                        <img src="img/minhub_logo.png" width="200" alt="">
+                    </a>
+                </div>
+                <div class="col-md-12 col-lg my-3 mx-auto d-flex justify-content-center">
+                    <a href="https://www.g2csolutions.tech/"  target="_blank">
+                        <img src="img/G2C.png" width="250" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h4 class="text-trans sombra-negra">Campano | Carrero | Lopez | Mendoza | Peruchena | Rocha | Simone</h4>
+                    <h4 class="text-trans sombra-negra">© 2021 | Grupo 2</h4>
+                </div>
+            </div>
+
+            
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/game.js"></script>
+
+    
+
+    <!--
+    <script>
+        setTimeout(function(){
+            $('.loader_bg').fadeToggle();
+        }, 1500);
+    </script>
+-->
+</body>
+</html>

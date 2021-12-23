@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center mx-1">
+    <ion-avatar class="center mb-1 avatar">
+      <img src="{{avatar}}" />
+    </ion-avatar>
+    <ion-label><p>{{name}}</p></ion-label>
+    <ion-label><p>( {{email}} )</p></ion-label>
+  </div>
+  
+  
+  <!--<ion-item (click)="selectImage()">
+    <ion-label> Cambiar foto</ion-label>
+  </ion-item>-->
+
+  <ion-item button (click)="logout()">
+    <ion-label> Cerrar Sesion </ion-label>
+  </ion-item>
+
+</ion-content>

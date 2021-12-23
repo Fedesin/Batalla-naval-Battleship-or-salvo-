@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis juegos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="updateData($event)">
+    <ion-refresher-content
+      pulling-icon="refresh-circle-outline"
+      refreshing-spinner="crescent"
+      refreshing-text="">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="data" lines="inset">
+    <div *ngFor="let g of data.games">
+      <ion-item [routerLink]="['/games/'+g.id]">
+        <div *ngIf="g.gamePlayers[0].player.email != email && g.gamePlayers.length == 2" class="full ion-margin-vertical">
+          <ion-avatar slot="end" class="ion-float-right ion-margin-vertical">
+            <img src="{{g.gamePlayers[0].player.avatar}}" />
+          </ion-avatar>
+          <ion-label class="ion-margin-vertical">
+            <h3>Nombre del rival: {{g.gamePlayers[0].player.name}}</h3>
+            <p>Fecha de creacion: {{g.creationDate | date :'short'}}</p>
+            <p>Estado: {{ getState(g.state) }}</p>
+          </ion-label>
+        </div>
+        <div *ngIf="g.gamePlayers[1]?.player.email != email && g.gamePlayers.length == 2" class="full ion-margin-vertical">
+          <ion-avatar slot="end" class="ion-float-right ion-margin-vertical">
+            <img src="{{g.gamePlayers[1]?.player.avatar}}" />
+          </ion-avatar>
+          <ion-label class="ion-margin-vertical">
+            <h3>Nombre del rival: {{g.gamePlayers[1]?.player.name}}</h3>
+            <p>Fecha de creacion: {{g.creationDate | date :'short'}}</p>
+            <p>Estado: {{ getState(g.state) }}</p>
+          </ion-label>
+        </div>
+        <div *ngIf="g.gamePlayers.length == 1" class="full ion-margin-vertical">
+          <ion-avatar slot="end" class="ion-float-right ion-margin-vertical" >
+            <img src="https://res.cloudinary.com/dwu2fgi1k/image/upload/v1640030076/profile/avatars/default0.png" />
+          </ion-avatar>
+          <ion-label class="ion-margin-vertical">
+            <h3>Esperando Rival</h3>
+            <p>Fecha de creacion: {{g.creationDate | date :'short'}}</p>
+            <p>Estado: Esperando Rival</p>
+          </ion-label>
+          <ion-progress-bar type="indeterminate"></ion-progress-bar>
+        </div>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

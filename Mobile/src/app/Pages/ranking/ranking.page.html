@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ranking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="data">
+      <div *ngFor="let p of data">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src={{p.avatar}} />
+        </ion-avatar>
+        <ion-label>
+          <h2>Nombre: {{p.name}}</h2>
+          <h3>Puntos: {{p.points}}</h3>
+          <p>Ganadas: {{p.ganadas}} | Perdidas: {{p.jugadas - p.empatadas - p.ganadas}} | Winrate: {{(p.ganadas/p.jugadas) * 100 | number: "1.2-2"}}% </p>
+        </ion-label>
+      </ion-item>
+      </div>
+    </ion-list>
+</ion-content>

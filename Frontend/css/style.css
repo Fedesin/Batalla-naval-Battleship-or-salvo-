@@ -1,0 +1,281 @@
+body{
+    color:aliceblue;
+}
+
+.grid-stack-item-content {
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    left: 0px !important;
+}
+
+.CarrierHorizontal{
+    background-image: url('../img/carrierhor.png');
+    background-size: contain;
+}
+
+.CarrierVertical {
+    background-image: url('../img/carrierver.png');
+    background-size: 100% 100%;
+    width: 42px !important;
+}
+
+.PatroalBoatHorizontal {
+    background-image: url('../img/patrolboathor.png');
+    background-size: contain;
+}
+
+.PatroalBoatVertical {
+    background-image: url('../img/patrolboatver.png');
+    background-size: 100% 100%;
+    width: 42px !important;
+}
+
+.SubmarineHorizontal {
+    background-image: url('../img/submarinehor.png');
+    background-size: contain;
+}
+
+.SubmarineVertical {
+    background-image: url('../img/submarinever.png');
+    background-size: 100% 100%;
+    width: 42px !important;
+}
+
+.DestroyerHorizontal {
+    background-image: url('../img/destroyerhor.png');
+    background-size: contain;
+}
+
+.DestroyerVertical {
+    background-image: url('../img/destroyerver.png');
+    background-size: 100% 100%;
+    width: 42px !important;
+}
+
+.BattleShipHorizontal {
+    background-image: url('../img/battleshiphor.png');
+    background-size: contain;
+}
+
+.BattleShipVertical {
+    background-image: url('../img/battleshipver.png');
+    background-size: 100% 100%;
+    width: 42px !important;
+}
+
+
+.grid-ships {
+    border: solid black;
+    height: 450px;
+    width: 450px;
+    background-image: url('../img/grid-bkg.png');
+    background-size: contain;
+    padding-left: 42px;
+    padding-top: 42px;
+    position: relative;
+}
+
+.salvo-table{
+    border: solid black 1px;
+    background-image: url('../img/backships.gif');
+    background-size: contain;
+    background-position-y: 15px;
+    background-position-x: 13px;
+}
+
+.salvo-table th{
+    background-color: rgb(31, 31, 31);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+}
+
+.salvo-table .td-info {
+    background-color: rgb(31, 31, 31);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+}
+
+.salvo-table th, .salvo-table td {
+    border: solid #454545 1px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+.shoot{
+    background-image: url('../img/targetself2.png');
+    background-size: contain;
+}
+
+.hitSelf {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url('../img/hit3.gif');
+    background-size: contain;
+}
+
+.shooted {
+    background-image: url('../img/targetself.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.hitOpponent {
+    background-image: url('../img/hit3.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#playersList{
+    display: inline;
+    margin-left: 20px;
+    color: black;
+}
+
+#playersList #playerOne {
+    color: red;
+}
+
+.shipsStatus{
+    background-color: #202121;
+    max-width: 450px;
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.text-trans {
+    color: rgba(255,255,255,0.7);
+}
+
+.borde-redondo {
+    border-radius: 1.25rem;
+}
+
+.marco-imagen{
+    border-style: solid;
+    border-color: rgb(22, 22, 22);
+    border-width: 5px;
+}
+
+.trazo-negro {
+    color: white;
+    text-shadow: -2px 2px 0 #000, 2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000;
+}
+
+.sombra-negra {
+    text-shadow: 0px 5px 5px #000, 0px 5px 5px #000, 0px 5px 5px #000, 0px 5px 5px #000;
+}
+
+.agua {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url('../img/agua.png');
+    background-size: contain;
+}
+
+.img-state{
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 100px;
+}
+
+.img-state-wait {
+    background-image: url(../img/wait.gif);
+}
+
+.img-state-ship {
+    background-image: url(../img/place_ship.gif);
+}
+
+.img-state-fire {
+    background-image: url(../img/fire.gif);
+}
+
+.img-state-win {
+    background-image: url(../img/win.gif);
+}
+
+.img-state-loss {
+    background-image: url(../img/loss.gif);
+}
+
+.img-state-tie {
+    background-image: url(../img/tie.gif);
+}
+
+.img-wait-player {
+    background-image: url(../img/wait_player.gif);
+}
+.shooting{
+    animation: 2s fadeIn;
+    animation-iteration-count: infinite;
+}
+.slots{
+    position: absolute; 
+    left:20%;
+}
+.guia{
+    position: relative; 
+    right:1%;
+}
+.iq{
+    position: relative; 
+    right:-69%;
+    
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0%
+    }
+    50% {
+      opacity: 100%;
+    }
+  100% {
+      opacity: 0%
+    }
+  }
+
+  .estado-video{
+      height: 200px;
+      max-height: 200px;
+      max-width: 300px;
+  }
+
+  .fondo-negro-22{
+    background: rgb(22, 22, 22);
+}
+
+html{
+    scroll-behavior: smooth;
+}
+.avatar{
+      margin-left: 15%;
+      margin-right: 15%;
+      width: 300px;
+}
+.text-bold{
+      font-weight: 700;
+}
+.nav-dark2{
+    background-color:#161616;
+}  
+.img-upload {
+    width: 30%;
+    margin: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+.bag-container
+{
+    background-color:#16161680;
+}

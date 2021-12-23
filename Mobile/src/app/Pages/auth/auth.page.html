@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="centerv">
+  <ion-card>
+    <ion-card-content *ngIf="LoginCard">
+      <ion-item>
+        <ion-label position="floating">Correo electronico</ion-label>
+        <ion-input type="email" [(ngModel)]="loginForm.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="loginForm.password" ></ion-input>
+      </ion-item>
+      <ion-button class="ion-margin-top" (click)="login()" expand="block">Iniciar Sesion</ion-button>
+    </ion-card-content>
+    <ion-card-content *ngIf="!LoginCard">
+      <ion-item>
+        <ion-label position="floating">Correo electronico</ion-label>
+        <ion-input type="email" [(ngModel)]="registerForm.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nombre de usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="registerForm.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="registerForm.password" ></ion-input>
+      </ion-item>
+        <ion-button class="ion-margin-top" (click)="register()" expand="block">Registrarse</ion-button>
+    </ion-card-content>
+    <div class="ion-text-center ion-margin" *ngIf="LoginCard">
+      <ion-label>¿No tienes cuenta? <p class="link" (click)="ChangeCard()">Registrate</p></ion-label>
+    </div>
+    <div class="ion-text-center ion-margin" *ngIf="!LoginCard">
+      <ion-label>¿Ya tienes cuenta? <p class="link" (click)="ChangeCard()">Inicia Sesion</p></ion-label>
+    </div>
+    <ion-progress-bar *ngIf="Loading" type="indeterminate"></ion-progress-bar>
+  </ion-card>
+  </div>
+</ion-content>
