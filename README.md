@@ -2,6 +2,8 @@
 
 ## Proyecto del Bootcamp de .Net - MindHub Compragamer
 
+## Link de video demostrativo: https://www.youtube.com/watch?v=56-_Dzqld60&feature=youtu.be
+
 ### Integrantes:
 
 - [Campano Fernando](https://github.com/fjcampano92)
